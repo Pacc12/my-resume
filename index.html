@@ -32,35 +32,36 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             padding-bottom: 40px;
-            /* Changed overflow to allow sticky header to work */
             overflow: visible; 
         }
 
-        /* Header Section - STICKY FIX */
+        /* Header Section - STICKY & OPAQUE FIX */
         .header {
             display: flex;
             align-items: center;
-            padding: 30px;
-            margin-top: 20px;
+            padding: 40px 30px; /* Increased padding to replace top margin */
+            margin-top: 0; 
             margin-bottom: 50px;
-            width: 90%;
-            margin-left:auto;
-            margin-right: auto;
-            border-radius: 130px; 
+            width: 100%; /* Full width so text can't peek around sides */
+            box-sizing: border-box;
+            border-radius: 60px 60px 130px 130px; /* Matches top of card */
+            
+            /* Opaque background so text "disappears" underneath */
+            background: white; 
             background: linear-gradient(90deg, 
-                #fff4a3 20%, 
-                #ffffff 80%, 
+                #fff4a3 0%, 
+                #ffffff 60%, 
                 #ffffff 100%
             );
+            
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             cursor: default;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             will-change: transform;
 
-            /* Sticky Logic */
-            position: -webkit-sticky; /* Support for Safari */
+            position: -webkit-sticky;
             position: sticky;
-            top: 10px; 
+            top: 0; 
             z-index: 100;
         }
 
@@ -118,7 +119,6 @@
             transition: transform 0.3s ease;
         }
 
-        /* Link pop effect when bubble is active */
         .bubble-text.active .contact-item,
         .bubble-text.active .job-company a {
             transform: scale(1.05);
@@ -143,7 +143,6 @@
             padding-left: 5px;
         }
 
-        /* Glowing Glass Titles */
         .section-title {
             font-size: 20px;
             font-weight: 700;
@@ -275,20 +274,19 @@
             .header {
                 flex-direction: column; 
                 text-align: center;
-                border-radius: 40px;
-                padding: 20px;
-                top: 5px; /* Tighter sticky for mobile */
+                border-radius: 30px 30px 60px 60px;
+                padding: 30px 20px;
             }
 
             .profile-pic {
-                width: 120px; /* Smaller for mobile to save space */
-                height: 120px;
+                width: 110px; 
+                height: 110px;
                 margin-right: 0;
                 margin-bottom: 10px;
             }
 
             .header-text h1 {
-                font-size: 24px;
+                font-size: 22px;
             }
 
             .content {
