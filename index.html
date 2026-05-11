@@ -30,12 +30,13 @@
             border-radius: 60px;
             border: 2px solid var(--accent-yellow);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
             position: relative;
             padding-bottom: 40px;
+            /* Changed overflow to allow sticky header to work */
+            overflow: visible; 
         }
 
-        /* Header Section */
+        /* Header Section - STICKY FIX */
         .header {
             display: flex;
             align-items: center;
@@ -54,9 +55,16 @@
             transition: transform 0.5s ease, box-shadow 0.5s ease;
             cursor: default;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            will-change: transform;
+
+            /* Sticky Logic */
+            position: -webkit-sticky; /* Support for Safari */
+            position: sticky;
+            top: 10px; 
+            z-index: 100;
         }
 
-        .header:hover {
+        .header:hover, .header.active {
             transform: translateX(10px); 
             box-shadow: -15px 0 30px rgba(255, 255, 255, 0.8), 
                         5px 5px 15px rgba(0, 0, 0, 0.1);
@@ -107,6 +115,14 @@
             display: flex;
             align-items: center;
             margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Link pop effect when bubble is active */
+        .bubble-text.active .contact-item,
+        .bubble-text.active .job-company a {
+            transform: scale(1.05);
+            text-decoration: underline;
         }
 
         .education-section li {
@@ -145,7 +161,7 @@
             border: 1px solid transparent;
         }
 
-        .section-title:hover {
+        .section-title:hover, .section-title.active {
             background: #e0e0e0;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -230,9 +246,10 @@
             border: 1px solid transparent;
             cursor: default;
             line-height: 1.6;
+            will-change: background, transform;
         }
 
-        .bubble-text:hover {
+        .bubble-text:hover, .bubble-text.active {
             background: rgba(224, 224, 224, 0.3); 
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
@@ -247,37 +264,45 @@
             text-underline-offset: 4px;
             cursor: pointer;
         }
+
         /* Responsive adjustments for Mobile */
-@media (max-width: 800px) {
-    .resume-card {
-        width: 95%; /* Take up most of the screen width */
-        border-radius: 30px; /* Smaller rounding for small screens */
-    }
+        @media (max-width: 800px) {
+            .resume-card {
+                width: 95%; 
+                border-radius: 30px; 
+            }
 
-    .header {
-        flex-direction: column; /* Stack pic on top of name */
-        text-align: center;
-        border-radius: 40px;
-        padding: 20px;
-    }
+            .header {
+                flex-direction: column; 
+                text-align: center;
+                border-radius: 40px;
+                padding: 20px;
+                top: 5px; /* Tighter sticky for mobile */
+            }
 
-    .profile-pic {
-        margin-right: 0;
-        margin-bottom: 15px;
-    }
+            .profile-pic {
+                width: 120px; /* Smaller for mobile to save space */
+                height: 120px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
 
-    .content {
-        grid-template-columns: 1fr; /* Switch from 2 columns to 1 */
-        padding: 0 20px;
-        gap: 20px;
-    }
+            .header-text h1 {
+                font-size: 24px;
+            }
 
-    .sidebar {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 20px;
-    }
-}
+            .content {
+                grid-template-columns: 1fr; 
+                padding: 0 20px;
+                gap: 20px;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -295,12 +320,12 @@
         <div class="sidebar bubble-text">
             <div class="contact-info">
                 <div class="contact-item" style="width: fit-content;">
-    📧 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-Jm_zBUsllsgOvMw26nvt2B28tR_8LhAzBdI4CQHgZeShYg/viewform?usp=sharing&ouid=115227074903495379724" 
-          target="_blank" 
-          style="color: inherit; text-decoration: none;">
-          Contact & Inquiries
-       </a>
-</div>
+                    📧 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-Jm_zBUsllsgOvMw26nvt2B28tR_8LhAzBdI4CQHgZeShYg/viewform?usp=sharing&ouid=115227074903495379724" 
+                          target="_blank" 
+                          style="color: inherit; text-decoration: none;">
+                          Contact & Inquiries
+                       </a>
+                </div>
                 <div class="contact-item" style="width: fit-content;">
                     📍 <a href="https://www.google.com/maps/search/Central+Harlem,+New+York,+NY" 
                           target="_blank" 
@@ -347,17 +372,15 @@
                 <tr><td>Spanish</td><td class="lang-percent">50%</td></tr>
             </table>
             <div class="section-title">Coding & Projects</div>
+            <ul>
+                <li>Robotics 101</li>
+                <li>Modern Web Development (HTML, CSS, ...)</li>
+                <li>UV/UX design</li>
+                <li>C++ and Game Logic</li>
+            </ul>
+        </div> 
 
-
-    <ul>
-        <li>Robotics 101</li>
-        <li>Modern Web Development (HTML, CSS, ...)</li>
-        <li>UV/UX design</li>
-        <li>C++ and Game Logic</li>
-    </ul>
-
-
-        </div> <div class="main-body">
+        <div class="main-body">
             <div class="section-title">About Me</div>
             <p class="about-text bubble-text">
                 From Haiti, came in the US in 2024, I am currently a high school junior, 
@@ -379,24 +402,24 @@
             </div>
 
             <div class="job-block bubble-text">
-    <div class="job-date">June - August 2025 (summer youth)</div>
-    <div class="job-company" style="width: fit-content;">
-        <a href="https://www.mapquest.com/us/new-york/7-laundromat-790585343" 
-           target="_blank" 
-           style="color: inherit; text-decoration: underline;"
-           class="contact-item">
-           7Laundromat inc.
-        </a>
-    </div>
-    <h3 class="job-role">Sub-manager</h3>
-    <ul>
-        <li>Gained leadership skills</li>
-        <li>Efficiently assisted customers, including those with language barriers</li>
-        <li>Ran the whole laundromat solely under camera supervision</li>
-        <li>Provided accurately satisfying solutions to customers in need while following workplace rules.</li>
-        <li>Always on time.</li>
-    </ul>
-</div>
+                <div class="job-date">June - August 2025 (summer youth)</div>
+                <div class="job-company" style="width: fit-content;">
+                    <a href="https://www.mapquest.com/us/new-york/7-laundromat-790585343" 
+                       target="_blank" 
+                       style="color: inherit; text-decoration: underline;"
+                       class="contact-item">
+                        7Laundromat inc.
+                    </a>
+                </div>
+                <h3 class="job-role">Sub-manager</h3>
+                <ul>
+                    <li>Gained leadership skills</li>
+                    <li>Efficiently assisted customers, including those with language barriers</li>
+                    <li>Ran the whole laundromat solely under camera supervision</li>
+                    <li>Provided accurately satisfying solutions to customers in need while following workplace rules.</li>
+                    <li>Always on time.</li>
+                </ul>
+            </div>
 
             <div class="section-title">References</div>
             <div class="references-grid">
@@ -411,5 +434,26 @@
                     Phone:
                 </div>
             </div>
-        </div> </div> </div> </body>
+        </div> 
+    </div> 
+</div>
+
+<script>
+    const interactives = document.querySelectorAll('.bubble-text, .section-title, .header');
+    
+    interactives.forEach(el => {
+        el.addEventListener('touchstart', function(e) {
+            interactives.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+        });
+
+        document.body.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.bubble-text, .section-title, .header')) {
+                interactives.forEach(item => item.classList.remove('active'));
+            }
+        });
+    });
+</script>
+
+</body>
 </html>
