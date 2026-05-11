@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guivensly Predestin - Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gray: #7a7a7a;
+            --light-gray: #f4f4f4;
+            --accent-yellow: #fff9e6;
+            --border-color: #d1d1d1;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            margin: 0;
+            color: #333;
+        }
+
+        /* Main Container */
+        .resume-card {
+            width: 800px;
+            background: white;
+            border-radius: 60px;
+            border: 2px solid var(--accent-yellow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            width: 90%;
+            margin-left:auto;
+            margin-right: auto;
+            border-radius: 130px; 
+            background: linear-gradient(90deg, 
+                #fff4a3 20%, 
+                #ffffff 80%, 
+                #ffffff 100%
+            );
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: default;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .header:hover {
+            transform: translateX(10px); 
+            box-shadow: -15px 0 30px rgba(255, 255, 255, 0.8), 
+                        5px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: #e0e0e0;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-image: url('https://via.placeholder.com/180/d9eefc/ffffff?text=Nature+Icon');
+            background-size: cover;
+        }
+
+        .header-text h1 {
+            margin: 0;
+            font-size: 36px;
+            letter-spacing: 2px;
+            color: #4a4a4a;
+            text-transform: uppercase;
+        }
+
+        .header-text p {
+            margin: 5px 0 0 1ch;
+            font-size: 18px;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        /* Layout Grid */
+        .content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            padding: 0 40px;
+            gap: 40px;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .education-section li {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        .education-section li:hover {
+            text-decoration: underline;
+            text-decoration-color: black; 
+            text-underline-offset: 4px;
+            color: #000;
+        }
+
+        .education-section {
+            list-style: none;
+            padding-left: 5px;
+        }
+
+        /* Glowing Glass Titles */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            padding: 10px 15px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            width: fit-content;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .section-title:hover {
+            background: #e0e0e0;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1),
+                        inset 0 0 15px rgba(255, 255, 255, 0.6);
+            color: #000;
+            transform: translateY(-2px);
+            text-shadow: 0 0 8px rgba(255,255,255,0.8);
+        }
+
+        ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .about-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .job-block {
+            margin-bottom: 25px;
+        }
+
+        .job-date {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .job-company {
+            font-weight: bold;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .job-role {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 2px 0 10px 0;
+        }
+
+        .lang-table {
+            width: 100%;
+            font-size: 14px;
+            border-collapse: collapse;
+        }
+
+        .lang-table td {
+            padding: 5px 0;
+        }
+
+        .lang-percent {
+            text-align: right;
+            color: #666;
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .ref-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .bubble-text {
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            cursor: default;
+            line-height: 1.6;
+        }
+
+        .bubble-text:hover {
+            background: rgba(224, 224, 224, 0.3); 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(224, 224, 224, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .contact-item:hover {
+            text-decoration: underline;
+            text-decoration-color: black; 
+            text-underline-offset: 4px;
+            cursor: pointer;
+        }
+        /* Responsive adjustments for Mobile */
+@media (max-width: 800px) {
+    .resume-card {
+        width: 95%; /* Take up most of the screen width */
+        border-radius: 30px; /* Smaller rounding for small screens */
+    }
+
+    .header {
+        flex-direction: column; /* Stack pic on top of name */
+        text-align: center;
+        border-radius: 40px;
+        padding: 20px;
+    }
+
+    .profile-pic {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        grid-template-columns: 1fr; /* Switch from 2 columns to 1 */
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="resume-card">
+    <div class="header">
+        <div class="profile-pic"></div>
+        <div class="header-text">
+            <h1>Guivensly Predestin</h1>
+            <p>BUSINESS ADMINISTRATION / CS</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="sidebar bubble-text">
+            <div class="contact-info">
+                <div class="contact-item" style="width: fit-content;">
+    📧 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc-Jm_zBUsllsgOvMw26nvt2B28tR_8LhAzBdI4CQHgZeShYg/viewform?usp=sharing&ouid=115227074903495379724" 
+          target="_blank" 
+          style="color: inherit; text-decoration: none;">
+          Contact & Inquiries
+       </a>
+</div>
+                <div class="contact-item" style="width: fit-content;">
+                    📍 <a href="https://www.google.com/maps/search/Central+Harlem,+New+York,+NY" 
+                          target="_blank" 
+                          style="color: inherit; text-decoration: none;">
+                          Home Address
+                       </a>
+                </div>
+            </div>
+
+            <div class="section-title">Education</div>
+            <ul style="list-style: none; padding-left: 0;">
+                <li class="contact-item" style="width: fit-content;">
+                    <a href="https://www.google.com/maps/search/Jardin+de+Madame+Rose+Haiti" 
+                       target="_blank" 
+                       style="color: inherit; text-decoration: none;">
+                       Institution de Madame Rose (out of country)
+                    </a>
+                </li>
+                <li class="contact-item" style="width: fit-content; margin-top: 10px;">
+                    <a href="https://www.google.com/maps/search/High+School+of+Arts+and+Technology+NYC" 
+                       target="_blank" 
+                       style="color: inherit; text-decoration: none;">
+                       High School of Arts and Technology
+                    </a>
+                </li>
+            </ul>
+
+            <div class="section-title">Skills</div>
+            <ul>
+                <li>Multilingual</li>
+                <li>Sports (basketball)</li>
+                <li>Time Management</li>
+                <li>Creative</li>
+                <li>Problem-Solving</li>
+                <li>Word-Processing (canva / word / excel / powerpoint...)</li>
+                <li>Coding</li>
+            </ul>
+
+            <div class="section-title">Languages</div>
+            <table class="lang-table">
+                <tr><td>Haitian Creole</td><td class="lang-percent">100%</td></tr>
+                <tr><td>English</td><td class="lang-percent">95%</td></tr>
+                <tr><td>French</td><td class="lang-percent">100%</td></tr>
+                <tr><td>Spanish</td><td class="lang-percent">50%</td></tr>
+            </table>
+            <div class="section-title">Coding & Projects</div>
+
+
+    <ul>
+        <li>Robotics 101</li>
+        <li>Modern Web Development (HTML, CSS, ...)</li>
+        <li>UV/UX design</li>
+        <li>C++ and Game Logic</li>
+    </ul>
+
+
+        </div> <div class="main-body">
+            <div class="section-title">About Me</div>
+            <p class="about-text bubble-text">
+                From Haiti, came in the US in 2024, I am currently a high school junior, 
+                I'm passionate about sports, music, I play games when it hits... I enjoy 
+                watching horror, action, and cyberlike futuristic movies.
+            </p>
+
+            <div class="section-title">Work Experience</div>
+            
+            <div class="job-block bubble-text">
+                <div class="job-date">Feb 2021 - April 2024 (out of country)</div>
+                <div class="job-company">Convenience Store</div>
+                <h3 class="job-role">Vendor</h3>
+                <ul>
+                    <li>Sales increased, customers were always satisfied...</li>
+                    <li>Gained early experience in cash management</li>
+                    <li>Proficient in customer service</li>
+                </ul>
+            </div>
+
+            <div class="job-block bubble-text">
+    <div class="job-date">June - August 2025 (summer youth)</div>
+    <div class="job-company" style="width: fit-content;">
+        <a href="https://www.mapquest.com/us/new-york/7-laundromat-790585343" 
+           target="_blank" 
+           style="color: inherit; text-decoration: underline;"
+           class="contact-item">
+           7Laundromat inc.
+        </a>
+    </div>
+    <h3 class="job-role">Sub-manager</h3>
+    <ul>
+        <li>Gained leadership skills</li>
+        <li>Efficiently assisted customers, including those with language barriers</li>
+        <li>Ran the whole laundromat solely under camera supervision</li>
+        <li>Provided accurately satisfying solutions to customers in need while following workplace rules.</li>
+        <li>Always on time.</li>
+    </ul>
+</div>
+
+            <div class="section-title">References</div>
+            <div class="references-grid">
+                <div class="ref-item">
+                    <strong>SYEP</strong>
+                    Laundromat Owner<br>
+                    Phone: +1 (347) 859-7440
+                </div>
+                <div class="ref-item">
+                    <strong>ABC</strong>
+                    what they do.<br>
+                    Phone:
+                </div>
+            </div>
+        </div> </div> </div> </body>
+</html>
