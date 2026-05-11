@@ -3,7 +3,7 @@
 A professional, responsive, and secure digital resume designed with a minimalist UI. This project serves as a bridge between Business Administration principles and Computer Science implementation.
 
 ## Live Demo
-[View the live resume here](https://github.com/Pacc12/my-resume.git)
+[View the live resume here](https://pacc12.github.io/my-resume/)
 
 ## Key Features
 - Responsive Design: The layout is fluid and adapts to desktop, tablet, and mobile screens using CSS Media Queries.
